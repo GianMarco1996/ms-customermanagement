@@ -7,8 +7,12 @@ import reactor.core.publisher.Mono;
 
 public interface CustomerService {
     Flux<CustomerDTO> getCustomers();
+
     Mono<CustomerDTO> getCustomer(String id);
+
     Mono<Customer> registerCustomer(Mono<CustomerDTO> customer);
+
     Mono<Customer> updateCustomer(String id, Mono<CustomerDTO> customer);
+
     Mono<Void> removeCustomer(String id);
 }

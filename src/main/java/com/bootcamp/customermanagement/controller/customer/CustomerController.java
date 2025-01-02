@@ -4,21 +4,14 @@ import com.bootcamp.customermanagement.api.CustomerApi;
 import com.bootcamp.customermanagement.mapper.customer.CustomerMapper;
 import com.bootcamp.customermanagement.model.CustomerRequest;
 import com.bootcamp.customermanagement.model.CustomerResponse;
-import com.bootcamp.customermanagement.model.documents.customer.Customer;
 import com.bootcamp.customermanagement.service.customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.support.WebExchangeBindException;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.Date;
-import java.util.Map;
-import java.util.function.Function;
 
 @RestController
 public class CustomerController implements CustomerApi {

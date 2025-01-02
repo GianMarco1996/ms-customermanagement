@@ -10,7 +10,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
-public class CustomerServiceImpl implements CustomerService{
+public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -46,8 +46,9 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public Mono<Customer> registerCustomer(Mono<CustomerDTO> customer) {
         return customer.map(c -> {
-                    if (!(c.getType().equals("E") || c.getType().equals("P")))
+                    if (!(c.getType().equals("E") || c.getType().equals("P"))) {
                         throw new IllegalArgumentException("Los clientes son de tipo: Personal (P) y Empresarial (E)");
+                    }
                     return c;
                 })
                 .map(this::mapper)

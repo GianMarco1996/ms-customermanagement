@@ -171,9 +171,6 @@
 						<exclude>com/bootcamp/customermanagement/configuration/**</exclude>
 						<exclude>com/bootcamp/customermanagement/mapper/**</exclude>
 						<exclude>com/bootcamp/customermanagement/model/**</exclude>
-						<exclude>com/bootcamp/customermanagement/repository/**</exclude>
-						<exclude>com/bootcamp/customermanagement/service/customer/CustomerService.class</exclude>
-						<exclude>com/bootcamp/customermanagement/service/customer/PersonService.class</exclude>
 						<exclude>com/bootcamp/customermanagement/api/**</exclude>
 					</excludes>
 				</configuration>

@@ -45,13 +45,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Mono<Customer> registerCustomer(Mono<CustomerDTO> customer) {
-        return customer.map(c -> {
-                    if (!(c.getType().equals("E") || c.getType().equals("P"))) {
-                        throw new IllegalArgumentException("Los clientes son de tipo: Personal (P) y Empresarial (E)");
-                    }
-                    return c;
-                })
-                .map(this::mapper)
+        return customer.map(this::mapper)
                 .flatMap(customerRepository::insert);
     }
 
@@ -72,6 +66,7 @@ public class CustomerServiceImpl implements CustomerService {
         CustomerDTO newCustomer = new CustomerDTO();
         newCustomer.setId(customer.getId());
         newCustomer.setType(customer.getType());
+        newCustomer.setCategory(customer.getCategory());
         newCustomer.setCompanyName(customer.getCompanyName());
         newCustomer.setRuc(customer.getRuc());
         newCustomer.setPhone(customer.getPhone());
@@ -83,6 +78,7 @@ public class CustomerServiceImpl implements CustomerService {
         Customer newCustomer = new Customer();
         newCustomer.setId(customer.getId());
         newCustomer.setType(customer.getType());
+        newCustomer.setCategory(customer.getCategory());
         newCustomer.setCompanyName(customer.getCompanyName());
         newCustomer.setRuc(customer.getRuc());
         newCustomer.setPhone(customer.getPhone());

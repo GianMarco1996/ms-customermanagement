@@ -31,14 +31,29 @@ public class PersonMapper implements EntityMapper<Person, PersonResponse, Person
         Person person = new Person();
         person.setName(model.getName());
         person.setLastName(model.getLastName());
-        person.setTypePerson(model.getTypePerson());
+        person.setTypePerson(getTypePerson(model.getTypePerson()));
         person.setMobile(model.getMobile());
         person.setEmail(model.getEmail());
         person.setDocumentNumber(model.getDocumentNumber());
-        person.setDocumentType(model.getDocumentType());
+        person.setDocumentType(getDocumentType(model.getDocumentType()));
         person.setAddress(model.getAddress());
         person.setBirthdate(model.getBirthdate());
         person.setCustomerId(model.getCustomerId());
         return person;
+    }
+
+    private String getTypePerson(PersonRequest.TypePersonEnum typePersonEnum) {
+        return switch (typePersonEnum) {
+            case T -> "Titular";
+            case FA -> "Firmate Autorizado";
+        };
+    }
+
+    private String getDocumentType(PersonRequest.DocumentTypeEnum documentTypeEnum) {
+        return switch (documentTypeEnum) {
+            case D -> "DNI";
+            case CE -> "Carnet de Extranjeria";
+            case P -> "Pasaporte";
+        };
     }
 }

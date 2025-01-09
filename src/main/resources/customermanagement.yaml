@@ -341,6 +341,10 @@ components:
           description: "tipo de cliente"
           type: string
           example: "Empresarial"
+        category:
+          description: "Categoría del cliente"
+          type: string
+          example: "Normal"
         companyName:
           description: "Nombre de la empresa"
           type: string
@@ -366,11 +370,23 @@ components:
       type: object
       required:
         - type
+        - category
       properties:
         type:
-          description: "tipo de cliente"
+          description: "tipo de cliente: Personal(P) y Empresarial(E)"
           type: string
-          example: "Empresarial"
+          example: "E"
+          enum:
+            - P
+            - E
+        category:
+          description: "Categoría del cliente: para Personal Normal(N) y VIP(V); para Empresarial Normal(N) y PYME(P)"
+          type: string
+          example: "N"
+          enum:
+            - N
+            - V
+            - p
         companyName:
           description: "Nombre de la empresa"
           type: string
@@ -421,7 +437,7 @@ components:
         documentType:
           description: "Tipo de documento de la persona"
           type: string
-          example: "San Isidro"
+          example: "DNI"
         address:
           description: "Dirección de la persona"
           type: string
@@ -457,9 +473,12 @@ components:
           type: string
           example: "Jimenez Perez"
         typePerson:
-          description: "Tipo de persona"
+          description: "Tipo de persona: Titular(T) y Firmate Autorizado(FA)"
           type: string
-          example: "Titular"
+          example: "T"
+          enum:
+            - T
+            - FA
         mobile:
           description: "Celular de la persona"
           type: string
@@ -473,9 +492,13 @@ components:
           type: string
           example: "5112038226"
         documentType:
-          description: "Tipo de documento de la persona"
+          description: "Tipo de documento de la persona: DNI(D), Carnet de Extranjeria(CE) y Pasaporte(P)"
           type: string
-          example: "San Isidro"
+          example: "D"
+          enum:
+            - D
+            - CE
+            - P
         address:
           description: "Dirección de la persona"
           type: string

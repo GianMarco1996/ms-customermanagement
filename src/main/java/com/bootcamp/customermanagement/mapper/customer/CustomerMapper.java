@@ -35,11 +35,27 @@ public class CustomerMapper implements EntityMapper<CustomerDTO, CustomerRespons
     @Override
     public CustomerDTO toDocument(CustomerRequest model) {
         CustomerDTO customer = new CustomerDTO();
-        customer.setType(model.getType());
+        customer.setType(getType(model.getType()));
+        customer.setCategory(getCategory(model.getCategory()));
         customer.setCompanyName(model.getCompanyName());
         customer.setRuc(model.getRuc());
         customer.setPhone(model.getPhone());
         customer.setAddress(model.getAddress());
         return customer;
+    }
+
+    private String getType(CustomerRequest.TypeEnum typeEnum) {
+        return switch (typeEnum) {
+            case E -> "Empresarial";
+            case P -> "Personal";
+        };
+    }
+
+    private String getCategory(CustomerRequest.CategoryEnum categoryEnum) {
+        return switch (categoryEnum) {
+            case N -> "Normal";
+            case V -> "VIP";
+            case P -> "PYME";
+        };
     }
 }

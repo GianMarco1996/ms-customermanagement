@@ -40,7 +40,6 @@ public class CustomerController implements CustomerApi {
         return customerService.registerCustomer(
                         customerRequest.map(customer -> customerMapper.toDocument(customer)))
                 .map(ResponseEntity::ok);
-                //.onErrorResume(IllegalArgumentException.class, e -> Mono.just(ResponseEntity.badRequest().body(e)));
     }
 
     @Override

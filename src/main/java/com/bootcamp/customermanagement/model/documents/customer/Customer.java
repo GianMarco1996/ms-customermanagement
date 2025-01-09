@@ -16,6 +16,8 @@ public class Customer {
 
     private String type;
 
+    private String category;
+
     private String companyName;
 
     private String ruc;

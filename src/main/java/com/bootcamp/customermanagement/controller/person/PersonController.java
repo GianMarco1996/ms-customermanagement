@@ -6,6 +6,8 @@ import com.bootcamp.customermanagement.model.PersonRequest;
 import com.bootcamp.customermanagement.model.PersonResponse;
 import com.bootcamp.customermanagement.service.person.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +15,7 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@RefreshScope
 @RestController
 public class PersonController implements PersonApi {
 
@@ -22,8 +25,12 @@ public class PersonController implements PersonApi {
     @Autowired
     private PersonMapper personMapper;
 
+    @Value(value = "${nombre.clente-persona}")
+    private String value;
+
     @Override
     public Mono<ResponseEntity<PersonResponse>> getPerson(String id, ServerWebExchange exchange) {
+        System.err.println("Value: " + value);
         return personService.getPerson(id)
                 .map(person -> personMapper.toModel(person))
                 .map(ResponseEntity::ok);
